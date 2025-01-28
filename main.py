@@ -23,14 +23,15 @@ itens = {
 
 # Testar comandos
 if __name__ == "__main__":
-    comandos_teste = f"""
-        usar ORBE DE ALQUIMIA em arma
-        usar ORBE DE EXALTADO em arma
-        usar ORBE DE EXALTADO em arma
-    """
-
-    print(f"Executando comando: {comandos_teste}")
-    executar_comando(comandos_teste, itens)
-    print(itens["arma"])
-    print(itens["armadura"])
-    print("-" * 40)
+    print("Bem-vindo ao sistema de criação de itens! Digite seus comandos ou 'sair' para encerrar.")
+    while True:
+        comando = input("> ").strip()
+        if comando.lower() == 'sair':
+            print("Encerrando o programa...")
+            break
+        if comando:
+            executar_comando(comando, itens)
+            for item in itens.values():
+                print(item)
+        else:
+            print("Por favor, insira um comando válido.")
