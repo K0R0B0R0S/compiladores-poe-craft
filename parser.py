@@ -12,13 +12,16 @@ def p_comandos(p):
         p[0] = [p[1]] + p[2]
 
 def p_comando(p):
-    '''comando : USAR ORBE EM lista_itens
+    '''comando : USAR ORBE EM UUID
                | LISTAR lista_itens
-               | LISTAR TODOS'''
+               | LISTAR TODOS
+               | CRIAR ITEM'''
     if len(p) == 3 and p[1] == "listar":
         p[0] = ("listar", p[2])
     elif len(p) == 2 and p[1] == "listar":
         p[0] = ("listar", "todos")
+    elif len(p) == 3 and p[1] == "criar":
+        p[0] = ("criar", p[2])
     else:
         p[0] = (p[2], p[4])
 
@@ -41,5 +44,4 @@ def p_empty(p):
 def p_error(p):
     print("Comando inválido!")
 
-# Construir o parser
 parser = yacc.yacc()
