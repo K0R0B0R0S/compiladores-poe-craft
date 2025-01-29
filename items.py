@@ -1,4 +1,5 @@
 import random
+import uuid
 
 # Lista de modificadores possíveis
 PREFIXOS = ["Afiado", "Destruidor", "Devoto", "Refinado", "Gélido", "Volátil"]
@@ -11,11 +12,12 @@ class Item:
         self.raridade = "normal"
         self.prefixos = []
         self.sufixos = []
+        self.uuid = str(uuid.uuid4())
 
     def __str__(self):
         total_mods = len(self.prefixos) + len(self.sufixos)
         mods = ", ".join(self.prefixos + self.sufixos)
-        return f"{self.tipo} ({self.raridade}) com {total_mods}/6 mods: {mods}"
+        return f"{self.tipo} ({self.raridade}) com {total_mods}/6 mods: {mods} (UUID: {self.uuid[:5]})"
 
     def adicionar_modificador(self):
         """Adiciona um modificador aleatório, respeitando os limites de prefixos e sufixos, e evita duplicação."""
