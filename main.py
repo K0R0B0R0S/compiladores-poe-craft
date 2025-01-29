@@ -3,14 +3,26 @@ from items import Item, Orbe
 
 def executar_comando(comando, itens):
     resultados = parser.parse(comando)
-    print(resultados)
     if resultados:
-        for orbe, tipo_item in resultados:
-            item = itens.get(tipo_item)
-            if item:
-                Orbe.usar(orbe, item)
+        for acao, lista_itens in resultados:
+            if acao == "listar":
+                if lista_itens == "todos":
+                    for item in itens.values():
+                        print(item)
+                else:
+                    for tipo_item in lista_itens:
+                        item = itens.get(tipo_item)
+                        if item:
+                            print(item)
+                        else:
+                            print(f"Item {tipo_item} não encontrado.")
             else:
-                print(f"Item {tipo_item} não encontrado.")
+                for tipo_item in lista_itens:
+                    item = itens.get(tipo_item)
+                    if item:
+                        Orbe.usar(acao, item)
+                    else:
+                        print(f"Item {tipo_item} não encontrado.")
     else:
         print("Comando inválido!")
 
@@ -31,7 +43,5 @@ if __name__ == "__main__":
             break
         if comando:
             executar_comando(comando, itens)
-            for item in itens.values():
-                print(item)
         else:
             print("Por favor, insira um comando válido.")

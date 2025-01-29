@@ -5,12 +5,18 @@ tokens = (
     'USAR',
     'ORBE',
     'EM',
-    'ITEM'
+    'ITEM',
+    'VIRGULA',
+    'LISTAR',
+    'TODOS'
 )
 
 # Palavras-chave
 t_USAR = r'usar'
 t_EM = r'em'
+t_LISTAR = r'listar'
+t_TODOS = r'todos'
+t_VIRGULA = r','
 
 # Expressões regulares para os orbes e itens
 def t_ORBE(t):
