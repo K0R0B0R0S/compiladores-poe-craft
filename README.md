@@ -1,3 +1,4 @@
+```javascript
 comandos → comando comandos  
          | comando  
 
@@ -20,3 +21,4 @@ lista_uuid_aux → VIRGULA UUID lista_uuid_aux
                | vazio  
 
 vazio → ε  
+```
