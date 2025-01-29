@@ -22,15 +22,27 @@ def processar_comando(comando, itens):
 def listar_itens(lista_itens, itens):
     """Lista os itens conforme solicitado pelo usuário."""
     if lista_itens == "todos":
+        # Lista todos os itens
         for item in itens.values():
             print(item)
     else:
-        for tipo_item in lista_itens:
-            item = itens.get(tipo_item)
-            if item:
-                print(item)
+        # Processa a lista de itens (tipos ou UUIDs)
+        for item_ref in lista_itens:
+            if len(item_ref) == 5 and all(c in "0123456789abcdef" for c in item_ref):
+                # Se for um UUID, busca o item específico
+                item = itens.get(item_ref)
+                if item:
+                    print(item)
+                else:
+                    print(f"Item com UUID {item_ref} não encontrado.")
             else:
-                print(f"Item {tipo_item} não encontrado.")
+                # Se for um tipo de item, lista todos os itens desse tipo
+                itens_filtrados = [item for item in itens.values() if item.tipo == item_ref]
+                if itens_filtrados:
+                    for item in itens_filtrados:
+                        print(item)
+                else:
+                    print(f"Nenhum item do tipo {item_ref} encontrado.")
 
 def criar_item(tipo_item, itens):
     """Cria um novo item e o adiciona ao dicionário de itens."""
@@ -38,13 +50,15 @@ def criar_item(tipo_item, itens):
     itens[novo_item.uuid[:5]] = novo_item
     print(f"Item {novo_item.tipo} criado com UUID: {novo_item.uuid[:5]}")
 
-def usar_orbe(orbe, uuid_item, itens):
-    """Aplica um orbe no item correspondente ao UUID fornecido."""
-    item = itens.get(uuid_item)
-    if item:
-        Orbe.usar(orbe, item)
-    else:
-        print(f"Item com UUID {uuid_item} não encontrado.")
+def usar_orbe(orbe, lista_uuid, itens):
+    """Aplica um orbe em cada item correspondente aos UUIDs fornecidos."""
+    for uuid_item in lista_uuid:
+        item = itens.get(uuid_item)
+        if item:
+            print(f"Aplicando orbe {orbe} no item {item.tipo} (UUID: {uuid_item})...")
+            Orbe.usar(orbe, item)
+        else:
+            print(f"Item com UUID {uuid_item} não encontrado.")
 
 def exibir_ajuda():
     """Exibe as instruções de uso para o usuário."""
@@ -68,6 +82,7 @@ def main():
     """Função principal que gerencia o loop de interação com o usuário."""
     itens = inicializar_sistema()
     print("Bem-vindo ao sistema de criação de itens! Digite 'ajuda' para ver os comandos disponíveis.")
+    
     
     while True:
         comando = input("> ").strip()

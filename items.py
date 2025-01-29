@@ -12,7 +12,7 @@ class Item:
         self.raridade = "normal"
         self.prefixos = []
         self.sufixos = []
-        self.uuid = str(uuid.uuid4())  # Gerar um UUID único para o item
+        self.uuid = str(uuid.uuid4())
 
     def __str__(self):
         total_mods = len(self.prefixos) + len(self.sufixos)
