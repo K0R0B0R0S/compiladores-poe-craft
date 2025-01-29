@@ -34,7 +34,7 @@ def p_lista_itens(p):
 def p_lista_itens_aux(p):
     '''lista_itens_aux : VIRGULA ITEM lista_itens_aux
                        | VIRGULA UUID lista_itens_aux
-                       | empty'''
+                       | vazio'''
     if len(p) == 4:
         p[0] = [p[2]] + p[3]
     else:
@@ -46,14 +46,14 @@ def p_lista_uuid(p):
 
 def p_lista_uuid_aux(p):
     '''lista_uuid_aux : VIRGULA UUID lista_uuid_aux
-                      | empty'''
+                      | vazio'''
     if len(p) == 4:
         p[0] = [p[2]] + p[3]
     else:
         p[0] = []
 
-def p_empty(p):
-    '''empty :'''
+def p_vazio(p):
+    '''vazio :'''
     p[0] = []
 
 def p_error(p):
