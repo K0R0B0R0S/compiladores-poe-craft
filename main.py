@@ -44,11 +44,15 @@ def listar_itens(lista_itens, itens):
                 else:
                     print(f"Nenhum item do tipo {item_ref} encontrado.")
 
-def criar_item(tipo_item, itens):
-    """Cria um novo item e o adiciona ao dicionário de itens."""
-    novo_item = Item(tipo_item)
-    itens[novo_item.uuid[:5]] = novo_item
-    print(f"Item {novo_item.tipo} criado com UUID: {novo_item.uuid[:5]}")
+def criar_item(lista_itens, itens):
+    """Cria um ou mais itens e os adiciona ao dicionário de itens."""
+    for tipo_item in lista_itens:
+        if tipo_item in ["arma", "armadura", "acessório"]:
+            novo_item = Item(tipo_item)
+            itens[novo_item.uuid[:5]] = novo_item
+            print(f"Item {novo_item.tipo} criado com UUID: {novo_item.uuid[:5]}")
+        else:
+            print(f"Tipo de item inválido: {tipo_item}")
 
 def usar_orbe(orbe, lista_uuid, itens):
     """Aplica um orbe em cada item correspondente aos UUIDs fornecidos."""

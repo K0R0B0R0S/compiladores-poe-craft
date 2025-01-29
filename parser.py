@@ -16,7 +16,7 @@ def p_comando(p):
                | LISTAR lista_itens
                | LISTAR TODOS
                | LISTAR UUID
-               | CRIAR ITEM'''
+               | CRIAR lista_itens'''
     if len(p) == 3 and p[1] == "listar":
         p[0] = ("listar", p[2])
     elif len(p) == 2 and p[1] == "listar":
