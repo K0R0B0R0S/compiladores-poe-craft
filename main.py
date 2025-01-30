@@ -22,27 +22,27 @@ def processar_comando(comando, itens):
 def listar_itens(lista_itens, itens):
     """Lista os itens conforme solicitado pelo usuário."""
     if lista_itens == "todos":
-        # Lista todos os itens
         for item in itens.values():
             print(item)
-    else:
-        # Processa a lista de itens (tipos ou UUIDs)
-        for item_ref in lista_itens:
-            if len(item_ref) == 5 and all(c in "0123456789abcdef" for c in item_ref):
-                # Se for um UUID, busca o item específico
-                item = itens.get(item_ref)
-                if item:
-                    print(item)
-                else:
-                    print(f"Item com UUID {item_ref} não encontrado.")
+        return
+
+    if not isinstance(lista_itens, list):
+        lista_itens = [lista_itens]
+
+    for item_ref in lista_itens:
+        if len(item_ref) == 5 and all(c in "0123456789abcdef" for c in item_ref):
+            item = itens.get(item_ref)
+            if item:
+                print(item)
             else:
-                # Se for um tipo de item, lista todos os itens desse tipo
-                itens_filtrados = [item for item in itens.values() if item.tipo == item_ref]
-                if itens_filtrados:
-                    for item in itens_filtrados:
-                        print(item)
-                else:
-                    print(f"Nenhum item do tipo {item_ref} encontrado.")
+                print(f"Item com UUID {item_ref} não encontrado.")
+        else:
+            itens_filtrados = [item for item in itens.values() if item.tipo == item_ref]
+            if itens_filtrados:
+                for item in itens_filtrados:
+                    print(item)
+            else:
+                print(f"Nenhum item do tipo {item_ref} encontrado.")
 
 def criar_item(lista_itens, itens):
     """Cria um ou mais itens e os adiciona ao dicionário de itens."""

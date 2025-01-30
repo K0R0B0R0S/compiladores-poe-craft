@@ -33,7 +33,7 @@ def t_ITEM(t):
     return t
 
 def t_UUID(t):
-    r'[a-f0-9]{5}'
+    r'\b[a-f0-9]{5}\b'
     t.value = t.value.lower()
     return t
 

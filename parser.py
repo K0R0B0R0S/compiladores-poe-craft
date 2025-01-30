@@ -13,9 +13,9 @@ def p_comandos(p):
 
 def p_comando(p):
     '''comando : USAR ORBE EM lista_uuid
-               | LISTAR lista_itens
-               | LISTAR TODOS
                | LISTAR UUID
+               | LISTAR TODOS
+               | LISTAR lista_itens
                | CRIAR lista_itens'''
     if len(p) == 3 and p[1] == "listar":
         p[0] = ("listar", p[2])
