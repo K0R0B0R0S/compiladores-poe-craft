@@ -68,14 +68,31 @@ def exibir_ajuda():
     """Exibe as instruções de uso para o usuário."""
     print("\n=== Ajuda ===")
     print("Comandos disponíveis:")
-    print("- criar arma: Cria uma nova arma.")
-    print("- criar armadura: Cria uma nova armadura.")
-    print("- criar acessório: Cria um novo acessório.")
-    print("- usar ORBE DE <tipo> em <uuid>: Aplica um orbe no item com o UUID fornecido.")
-    print("- listar todos: Lista todos os itens criados.")
-    print("- listar <tipo>: Lista itens de um tipo específico.")
-    print("- sair: Encerra o programa.")
-    print("=============\n")
+    print("\n1. Criar itens:")
+    print("   - criar arma: Cria uma nova arma.")
+    print("   - criar armadura: Cria uma nova armadura.")
+    print("   - criar acessório: Cria um novo acessório.")
+    print("   - criar arma, armadura, acessório: Cria múltiplos itens de uma vez.")
+    
+    print("\n2. Listar itens:")
+    print("   - listar todos: Lista todos os itens criados.")
+    print("   - listar arma: Lista todas as armas criadas.")
+    print("   - listar armadura: Lista todas as armaduras criadas.")
+    print("   - listar acessório: Lista todos os acessórios criados.")
+    print("   - listar <uuid>: Lista o item com o UUID especificado.")
+    
+    print("\n3. Usar orbes:")
+    print("   - usar ORBE DE TRANSMUTAÇÃO em <uuid>: Transforma um item normal em mágico e adiciona um modificador.")
+    print("   - usar ORBE DE AMPLIAÇÃO em <uuid>: Adiciona um modificador a um item mágico.")
+    print("   - usar ORBE DE RÉGIO em <uuid>: Transforma um item mágico em raro e adiciona um modificador.")
+    print("   - usar ORBE DE EXALTADO em <uuid>: Adiciona um modificador a um item raro.")
+    print("   - usar ORBE DE ANULAÇÃO em <uuid>: Remove um modificador de um item.")
+    print("   - usar ORBE DE ALQUIMIA em <uuid>: Transforma um item normal em raro e adiciona quatro modificadores.")
+    
+    print("\n4. Outros comandos:")
+    print("   - ajuda: Exibe esta mensagem de ajuda.")
+    print("   - sair: Encerra o programa.")
+    print("\n=== Fim da Ajuda ===\n")
 
 def encerrar_programa():
     """Encerra o programa com uma mensagem de despedida."""
